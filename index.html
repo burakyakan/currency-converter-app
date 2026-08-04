@@ -22,7 +22,7 @@
                 <option value="chf">Swiss Franc (CHF)</option>
                 <option value="jpy">Japanese Yen (JPY)</option>
             </select>
-            <label for="quote">Base Currency</label>
+            <label for="quote">Convert Currency</label>
             <select name="quote" id="quote">
                 <option value="try">Turkish Lira (TRY)</option>
                 <option value="usd">American Dollar (USD)</option>
@@ -31,6 +31,12 @@
                 <option value="chf">Swiss Franc (CHF)</option>
                 <option value="jpy">Japanese Yen (JPY)</option>
             </select>
+            <label for="base-amount">Base Currency Amount</label>
+            <input type="number" name="base-amount" id="base-amount">
+            <label for="quote-amount">Quote Currency Amount</label>
+            <input type="number" name="quote-amount" id="quote-amount" readonly>
+            <input type="submit" value="Convert">
+            
             
         </form>
 
