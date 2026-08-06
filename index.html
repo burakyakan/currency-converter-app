@@ -9,7 +9,8 @@
 <body>
     <header>
         <h1>Currency Converter</h1>
-        <button>LinkedIN</button>
+        <a href="https://www.linkedin.com/in/burakyakan/">LinkedIn</a>
+        <a href="https://github.com/burakyakan">GitHub</a>
 
     </header>
     <main>
@@ -33,10 +34,10 @@
                 <option value="jpy">Japanese Yen (JPY)</option>
             </select>
             <label for="base-amount">Base Currency Amount</label>
-            <input type="number" name="base-amount" id="base-amount">
+            <input type="number" name="base-amount" id="base-amount" min="0">
             <label for="quote-amount">Quote Currency Amount</label>
             <input type="number" name="quote-amount" id="quote-amount" readonly>
-            <input type="submit" value="Convert">
+            <input type="submit" value="Convert" id="convert-button">
             
             
         </form>
