@@ -9,9 +9,8 @@
 <body>
     <header>
         <h1>Currency Converter</h1>
-        <a href="https://www.linkedin.com/in/burakyakan/">LinkedIn</a>
-        <a href="https://github.com/burakyakan">GitHub</a>
-
+        <a href="https://www.linkedin.com/in/burakyakan/" target="_blank">LinkedIn</a>
+        <a href="https://github.com/burakyakan" target="_blank">GitHub</a>
     </header>
     <main>
         <form>
@@ -34,13 +33,23 @@
                 <option value="jpy">Japanese Yen (JPY)</option>
             </select>
             <label for="base-amount">Base Currency Amount</label>
-            <input type="number" name="base-amount" id="base-amount" min="0">
+            <input type="number" name="base-amount" id="base-amount" min="0" value="1">
             <label for="quote-amount">Quote Currency Amount</label>
             <input type="number" name="quote-amount" id="quote-amount" readonly>
             <input type="submit" value="Convert" id="convert-button">
             
-            
+            <!--TODO-->
+            <!-- Add Swap Button (!!!) -->
+            <!-- Add Date and Hour Data (!!) -->
+            <!-- Add More Currencies (!!) -->
+            <!-- Add Favourite Currencies Function (!) -->
+            <!-- Add Dark Mode (!) -->
+               
         </form>
+
+        <label for="decimal-slider">Decimal Count to be Shown</label>
+        <input type="range" name="decimal-slider" id="decimal-slider" value="2" min="2" max="5">
+        <output for="decimal-slider" name="decimal-slider-output" id="decimal-slider-output" >2</output>
 
     </main>
     <footer>
