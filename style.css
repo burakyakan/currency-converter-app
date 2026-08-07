@@ -1,14 +1,41 @@
-/* --- GENEL AYARLAR --- */
+/* ==========================================================================
+   1. DEĞİŞKENLER VE GENEL AYARLAR
+   ========================================================================== */
+:root {
+    --bg-primary: #f8fafc;
+    --bg-card: #ffffff;
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --accent: #2563eb;
+    --accent-hover: #1d4ed8;
+    --border: #e2e8f0;
+    --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --radius: 12px;
+}
+
+/* Karanlık Mod Değişkenleri (.dark class'ı body'e eklendiğinde devreye girer) */
+body.dark {
+    --bg-primary: #0f172a;
+    --bg-card: #1e293b;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --accent: #3b82f6;
+    --accent-hover: #60a5fa;
+    --border: #334155;
+    --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.5);
+}
+
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s;
 }
 
 body {
-    background-color: #f4f7f6;
-    color: #333;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -17,92 +44,124 @@ body {
     padding: 20px;
 }
 
-/* --- HEADER (BAŞLIK VE LİNKLER) --- */
+/* ==========================================================================
+   2. HEADER (ÜST ALAN)
+   ========================================================================== */
 header {
     width: 100%;
     max-width: 500px;
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
     align-items: center;
-    margin-bottom: 20px;
-    padding: 10px 0;
-    border-bottom: 2px solid #e0e0e0;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
 }
 
 header h1 {
     font-size: 1.5rem;
-    color: #2c3e50;
+    flex-grow: 1;
 }
 
 header a {
-    color: #3498db;
+    color: var(--text-secondary);
     text-decoration: none;
-    font-weight: 600;
-    font-size: 0.9rem;
-    transition: color 0.2s;
+    font-size: 0.85rem;
+    font-weight: 500;
 }
 
 header a:hover {
-    color: #2980b9;
-    text-decoration: underline;
+    color: var(--accent);
 }
 
-/* --- MAIN (DÖVİZ KART ALANI) --- */
+#main-title {
+    color: var(--text-primary);
+}
+
+#lang {
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+    cursor: pointer;
+}
+
+#dark-mode-btn {
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid var(--accent);
+    background-color: transparent;
+    color: var(--accent);
+    cursor: pointer;
+    font-weight: 600;
+}
+
+#dark-mode-btn:hover {
+    background-color: var(--accent);
+    color: #ffffff;
+}
+
+/* ==========================================================================
+   3. MAIN & FORM (HESAPLAMA ALANI)
+   ========================================================================== */
 main {
-    background: #ffffff;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
     width: 100%;
     max-width: 500px;
+    background-color: var(--bg-card);
+    padding: 30px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
 }
 
-/* --- FORM VE ELEMENT HİZALAMA --- */
 form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    margin-bottom: 25px;
+    gap: 14px;
+}
+
+#date-and-hour {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    text-align: center;
+    margin-bottom: 8px;
 }
 
 label {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     font-weight: 600;
-    color: #7f8c8d;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: -5px;
+    color: var(--text-primary);
+    margin-bottom: -4px;
 }
 
 select, input[type="number"] {
     width: 100%;
     padding: 12px;
-    border: 2px solid #e0e0e0;
     border-radius: 8px;
+    border: 1px solid var(--border);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
     font-size: 1rem;
-    background-color: #fff;
-    color: #2c3e50;
     outline: none;
-    transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-select:focus, input[type="number"]:focus {
-    border-color: #3498db;
-    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
+select:focus, input:focus {
+    border-color: var(--accent);
 }
 
-/* Salt Okunur Çıktı Alanı */
-input[type="number"]:read-only {
-    background-color: #f8f9fa;
-    border-color: #e2e8f0;
-    color: #27ae60;
-    font-weight: bold;
-    cursor: not-repeat;
+/* Readonly girdi alanı stili */
+input[readonly] {
+    background-color: var(--border);
+    opacity: 0.7;
+    cursor: not-allowed;
 }
 
-/* Çevir Butonu */
+/* Buton Düzenleri */
 #convert-button {
-    background-color: #2ecc71;
+    background-color: var(--accent);
     color: white;
     border: none;
     padding: 14px;
@@ -110,57 +169,78 @@ input[type="number"]:read-only {
     font-size: 1rem;
     font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.2s, transform 0.1s;
     margin-top: 10px;
 }
 
 #convert-button:hover {
-    background-color: #27ae60;
+    background-color: var(--accent-hover);
 }
 
-#convert-button:active {
-    transform: scale(0.98);
+#swap-button {
+    background-color: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
 }
 
-/* --- SLIDER VE OUTPUT ALANI --- */
-#decimal-slider {
-    width: 80%;
+#swap-button:hover {
+    background-color: var(--border);
+}
+
+#disclaimer {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    text-align: center;
+    text-decoration: none;
     margin-top: 8px;
-    margin-right: 10px;
-    accent-color: #3498db;
-    vertical-align: middle;
 }
 
-/* Öğrendiğin output etiketine özel şık bir kutu */
+#disclaimer:hover {
+    text-decoration: underline;
+}
+
+/* Slider (Ondalık Ayarı) Alanı */
+#decimal-slider-label {
+    margin-top: 24px;
+    display: block;
+}
+
+input[type="range"] {
+    width: 80%;
+    margin-top: 10px;
+    accent-color: var(--accent);
+    cursor: pointer;
+}
+
 #decimal-slider-output {
     display: inline-block;
-    background-color: #3498db;
-    color: white;
-    padding: 2px 10px;
-    border-radius: 4px;
+    width: 15%;
+    text-align: right;
     font-weight: bold;
-    font-size: 0.9rem;
-    min-width: 30px;
-    text-align: center;
-    vertical-align: middle;
+    color: var(--accent);
 }
 
-/* --- FOOTER --- */
+/* ==========================================================================
+   4. FOOTER (ALT BİLGİ)
+   ========================================================================== */
 footer {
     width: 100%;
     max-width: 500px;
     text-align: center;
-    margin-top: 30px;
-    font-size: 0.8rem;
-    color: #95a5a6;
-    line-height: 1.5;
+    margin-top: 24px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
 }
 
 footer a {
-    color: #7f8c8d;
-    text-decoration: underline;
+    color: var(--accent);
+    text-decoration: none;
 }
 
 footer a:hover {
-    color: #34495e;
+    text-decoration: underline;
 }

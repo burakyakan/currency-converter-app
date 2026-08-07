@@ -8,44 +8,53 @@
 </head>
 <body>
     <header>
-        <h1>Currency Converter</h1>
+        <h1><a href="index.html" id="main-title">Currency Converter</a></h1>
         <a href="https://www.linkedin.com/in/burakyakan/" target="_blank">LinkedIn</a>
         <a href="https://github.com/burakyakan" target="_blank">GitHub</a>
-        <a href="https://github.com/burakyakan/currency-converter-app" target="_blank">Source Code</a>
+        <a href="https://github.com/burakyakan/currency-converter-app" target="_blank" id="source-code-link">Source Code</a>
         <select name="lang" id="lang">
-            <option value="tr">Türkçe</option>
             <option value="en">English</option>
+            <option value="tr">Türkçe</option>
             <option value="es">Español</option>
+            <option value="fr">Français</option>
+            <option value="de">Deutsch</option>
+            <option value="it">Italiano</option>
+            <option value="pt">Português</option>
         </select>
-        <button>Dark Mode</button>
+        <button id="dark-mode-btn">Dark Mode</button>
     </header>
     <main>
         <form>
             <p id="date-and-hour"></p>
-            <label for="base">Base Currency</label>
+            <label for="base" id="base-label">Base Currency</label>
             <select name="base" id="base">
                 <option value="try">Turkish Lira (TRY)</option>
-                <option value="usd">American Dollar (USD)</option>
+                <option value="usd">United States Dollar (USD)</option>
                 <option value="eur">Euro (EUR)</option>
                 <option value="gbp">Great Britain Pound (GBP)</option>
                 <option value="chf">Swiss Franc (CHF)</option>
                 <option value="jpy">Japanese Yen (JPY)</option>
+                <option value="cad">Canadian Dollar (CAD)</option>
+                <option value="aud">Australian Dollar (AUD)</option>
             </select>
-            <label for="quote">Convert Currency</label>
+            <label for="quote" id="quote-label">Convert Currency</label>
             <select name="quote" id="quote">
                 <option value="try">Turkish Lira (TRY)</option>
-                <option value="usd">American Dollar (USD)</option>
+                <option value="usd">United States Dollar (USD)</option>
                 <option value="eur">Euro (EUR)</option>
                 <option value="gbp">Great Britain Pound (GBP)</option>
                 <option value="chf">Swiss Franc (CHF)</option>
                 <option value="jpy">Japanese Yen (JPY)</option>
+                <option value="cad">Canadian Dollar (CAD)</option>
+                <option value="aud">Australian Dollar (AUD)</option>
             </select>
-            <label for="base-amount">Base Currency Amount</label>
+            <label for="base-amount" id="base-amount-label">Base Currency Amount</label>
             <input type="number" name="base-amount" id="base-amount" min="0" value="1">
-            <label for="quote-amount">Quote Currency Amount</label>
+            <label for="quote-amount" id="quote-amount-label">Quote Currency Amount</label>
             <input type="number" name="quote-amount" id="quote-amount" readonly>
             <input type="submit" value="Convert" id="convert-button">
             <button id="swap-button">Swap</button>
+            <a href="disclaimer.html" id="disclaimer">Disclaimer</a>
             
             <!--TODO-->
             <!-- Add Swap Button (!!!) -->
@@ -56,14 +65,15 @@
                
         </form>
 
-        <label for="decimal-slider">Decimal Count to be Shown</label>
+        <label for="decimal-slider" id="decimal-slider-label">Decimal Count to be Shown</label>
         <input type="range" name="decimal-slider" id="decimal-slider" value="2" min="2" max="5">
         <output for="decimal-slider" name="decimal-slider-output" id="decimal-slider-output" >2</output>
 
     </main>
     <footer>
         <p>Burak Yakan © 2026</p>
-        <p>Currency Data Source: <a href="https://frankfurter.dev/" target="_blank" rel="noopener noreferrer">https://frankfurter.dev/</a></p>
+        <p id="currency-data-source">Currency Data Source: </p>
+        <a href="https://frankfurter.dev/" target="_blank" rel="noopener noreferrer">https://frankfurter.dev/</a>
 
     </footer>
     <script src="script.js"></script>

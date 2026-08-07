@@ -1,0 +1,294 @@
+AI Modu Sohbeti: js date and hourŞunu dediniz: js date and hourjs date and hourIn JavaScript, you can manage dates and hours using the native Date object.Here is a quick reference guide on how to get, format, and modify the date and hour:1. Get the Current Date and Hourjavascript// Create a new Date object with the current date and time
+const now = new Date(); 
+
+const year = now.getFullYear();   // e.g., 2026
+const month = now.getMonth() + 1; // 0-11 index (Jan is 0), so add 1
+const date = now.getDate();       // Day of the month (1-31)
+
+// Get the current hour (0-23)
+const hours = now.getHours();     
+const minutes = now.getMinutes(); 
+Kodu dikkatli kullanın.2. Format Date and Time AutomaticallyInstead of extracting pieces manually, use toLocaleString() to format the date and hour cleanly based on user locale.javascriptconst now = new Date();
+
+// Format to local string (e.g., "8/7/2026, 12:15:30 PM")
+console.log(now.toLocaleString()); 
+
+// Customize to get a clean 12-hour AM/PM format
+const time12hr = now.toLocaleString([], { 
+  hour: '2-digit', 
+  minute: '2-digit', 
+  hour12: true 
+});
+console.log(time12hr); // e.g., "12:15 PM"
+Kodu dikkatli kullanın.3. Set or Modify the HourYou can change the hour of an existing date object using setHours(). This automatically handles day overflows if you add hours past midnight.javascriptconst event = new Date();
+
+// Set the time explicitly to 4:00 PM (16:00)
+event.setHours(16); 
+
+// Add 5 hours to the current time
+event.setHours(event.getHours() + 5); 
+Kodu dikkatli kullanın.Summary of Key MethodsObjectiveJavaScript MethodOutput Range / FormatGet Hourdate.getHours()0 to 23Set Hourdate.setHours(val)Changes date in-placeISO Stringdate.toISOString()YYYY-MM-DDTHH:mm:ss.sssZTimestampDate.now()Milliseconds since Jan 1, 1970If you are looking to build something specific, please let me know:Do you need to calculate the difference between two times?Are you trying to format this for a specific timezone?Do you need a countdown or a real-time clock on a webpage?I can provide the exact code block you need!MDN Web DocsDate.prototype.getHours() - JavaScript - MDN Web DocsReturn value. An integer, between 0 and 23, representing the hours for the given date according to local time. Returns NaN if the ...MDN Web DocsDate - JavaScript - MDN Web Docs - MozillaDate time string format * YYYY is the year, with four digits ( 0000 to 9999 ), or as an expanded year of + or - followed by six di...W3SchoolsJavaScript Date getHours() Method - W3Schoolsnew Date() constructor getDate() getDay() getFullYear() getHours() getMilliseconds() getMinutes() getMonth() getSeconds() getTime(Tümünü gösterjsde bunları yanyana nasıl yazıp domu değiştircemJavaScript'te tarihi ve saati yan yana yazdırıp DOM'u (HTML sayfasını) değiştirmek için bir string birleştirme yapmalı ve ardından bir HTML elemanının textContent veya innerText özelliğini kullanmalısınız.Bunu yapmanın en pratik yolları aşağıdadır:1. Modern Yöntem: toLocaleString ile DOM DeğiştirmeBu yöntem tarih ve saati yerel formata göre otomatik olarak yan yana getirir ve tek satırda HTML'e yazar.html<!-- HTML Elemanınız -->
+<div id="zaman-alani">Yükleniyor...</div>
+Kodu dikkatli kullanın.javascript// 1. DOM elemanını seçin
+const zamanKutusu = document.getElementById('zaman-alani');
+
+// 2. Şu anki zamanı alın
+const simdi = new Date();
+
+// 3. Tarih ve saati yerel formatta yan yana getirin (Örn: "7.08.2026 12:15")
+const formatliZaman = simdi.toLocaleString('tr-TR', {
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit',
+  hour: '2-digit',
+  minute: '2-digit'
+});
+
+// 4. DOM'u güncelleyin
+zamanKutusu.textContent = formatliZaman;
+Kodu dikkatli kullanın.2. Özel Format Yöntemi: Template Literals (Şablon Dizileri)Eğer tarih ve saatin arasına özel bir karakter (örneğin - veya |) koyarak yan yana yazmak istiyorsanız, ` ` (backtick) işaretlerini kullanabilirsiniz.javascriptconst zamanKutusu = document.getElementById('zaman-alani');
+const simdi = new Date();
+
+// Parçaları tek tek alın
+const gun = String(simdi.getDate()).padStart(2, '0');
+const ay = String(simdi.getMonth() + 1).padStart(2, '0');
+const yil = simdi.getFullYear();
+const saat = String(simdi.getHours()).padStart(2, '0');
+const dakika = String(simdi.getMinutes()).padStart(2, '0');
+
+// Yan yana birleştirin (Örn: "07/08/2026 | 12:15")
+const ozelMetin = `${gun}/${ay}/${yil} | ${saat}:${dakika}`;
+
+// DOM'u güncelleyin
+zamanKutusu.textContent = ozelMetin;
+Kodu dikkatli kullanın.3. Bonus: Canlı Akıp Giden Saat YapmakSayfa yüklendiğinde saatin sabit kalmasını istemiyorsanız, yukarıdaki kodu bir setInterval içine alarak her saniye canlı güncellenmesini sağlayabilirsiniz:javascriptfunction zamaniGuncelle() {
+  const simdi = new Date();
+  const formatliZaman = simdi.toLocaleString('tr-TR'); // Tarih ve saati yan yana verir
+  document.getElementById('zaman-alani').textContent = formatliZaman;
+}
+
+// Her 1000 milisaniyede (1 saniyede) bir fonksiyonu çalıştır
+setInterval(zamaniGuncelle, 1000);
+
+// Sayfa ilk açıldığında boş kalmaması için hemen bir kere çalıştır
+zamaniGuncelle();
+Kodu dikkatli kullanın.Eğer kodunuz çalışmazsa veya daha farklı bir görünüm isterseniz bana bildirebilirsiniz:HTML tarafındaki elemanınız bir div mi, yoksa bir form input alanı mı?Tarih ve saat arasında görmek istediğiniz özel bir sembol (örn: çizgi, boşluk, ikon) var mı?zaman dilimi nasıl çekerim ve ağustosu nasıl yazıyla yazarımJavaScript'te zaman dilimini (Timezone) çekmek ve ay ismini yazıyla (örneğin "Ağustos") yazdırmak için en güncel ve kolay yöntemleri aşağıda bulabilirsiniz.1. Ay İsmini Yazıyla Yazdırmak (Örn: "Ağustos")Ay ismini manuel bir diziyle uğraşmadan, JavaScript'in yerleşik toLocaleString fonksiyonu ile doğrudan Türkçe olarak çekebilirsiniz.javascriptconst simdi = new Date();
+
+// Sadece uzun ay ismini çeker: "Ağustos"
+const ayIsmi = simdi.toLocaleString('tr-TR', { month: 'long' }); 
+
+console.log(ayIsmi); // Çıktı: "Ağustos"
+Kodu dikkatli kullanın.2. Zaman Dilimini (Timezone) ÇekmekZaman dilimini iki farklı formatta çekebilirsiniz: Coğrafi isim (Örn: Europe/Istanbul) veya Kısaltma/Saat farkı (Örn: GMT+3).javascript// Yöntem A: Coğrafi Zaman Dilimi Adı (Örn: "Europe/Istanbul")
+const zamanDilimiAdi = Intl.DateTimeFormat().resolvedOptions().timeZone;
+console.log(zamanDilimiAdi); 
+
+// Yöntem B: GMT Formatı (Örn: "GMT+3" veya "UTC+3")
+const gmtFormati = simdi.toTimeString().split(' ')[1]; 
+console.log(gmtFormati); // Çıktı: "GMT+0300"
+Kodu dikkatli kullanın.3. Hepsini Birleştirip DOM'a Yazdırma (Tam Kod)İstediğiniz tüm bilgileri (Tarih, Yazıyla Ay, Saat ve Zaman Dilimi) yan yana getirip HTML sayfanıza basacak örnek kod yapısı:html<!-- HTML Elemanınız -->
+<div id="zaman-detay">Yükleniyor...</div>
+Kodu dikkatli kullanın.javascriptconst kutu = document.getElementById('zaman-detay');
+const simdi = new Date();
+
+// 1. Parçaları hazırlayın
+const gun = simdi.getDate();
+const ayYazi = simdi.toLocaleString('tr-TR', { month: 'long' }); // "Ağustos"
+const yil = simdi.getFullYear();
+const saatDakika = simdi.toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' }); // "12:17"
+const bolge = Intl.DateTimeFormat().resolvedOptions().timeZone; // "Europe/Istanbul"
+
+// 2. Yan yana birleştirin (Template Literals ile)
+// Çıktı Örneği: "7 Ağustos 2026 | 12:17 (Europe/Istanbul)"
+const tamMetin = `${gun} ${ayYazi} ${yil} | ${saatDakika} (${bolge})`;
+
+// 3. DOM'u güncelleyin
+kutu.textContent = tamMetin;
+Kodu dikkatli kullanın.Bu tasarımı uygularken sormak istediğiniz başka bir detay var mı?Zaman dilimini Europe/Istanbul yerine GMT+3 gibi mi göstermek istersiniz?Ay isminin ilk harfi büyük mü yoksa tamamı büyük harf ("AĞUSTOS") mü olmalı?js kodunda kod sırasının önemi var mı?Evet, JavaScript'te kod sırasının çok büyük bir önemi vardır. JavaScript, kodu yukarıdan aşağıya ve soldan sağa doğru sırayla çalıştıran (satır satır ilerleyen) bir dildir.Kod sırasının kritik olmasının en temel 3 nedeni şunlardır:1. DOM Elemanlarına Erişim (HTML Yüklenme Sırası)JavaScript ile bir HTML elemanını (DOM) değiştirmek istiyorsanız, o elemanın JavaScript kodundan önce yüklenmiş olması gerekir. Eğer kod üste, HTML alta yazılırsa JavaScript elemanı bulamaz ve hata verir.Hatalı Sıra (Eleman bulunamaz):html<script>
+  // HATA: 'zaman' id'li div henüz dünyada yok!
+  document.getElementById('zaman').textContent = "15:00"; 
+</script>
+<div id="zaman"></div>
+Kodu dikkatli kullanın.Doğru Sıra:html<div id="zaman"></div>
+<script>
+  // DOĞRU: Eleman önce yüklendi, şimdi erişebiliriz.
+  document.getElementById('zaman').textContent = "15:00"; 
+</script>
+Kodu dikkatli kullanın.2. Değişken Tanımlama SırasıBir değişkeni kullanmadan veya ekrana yazdırmadan önce onu tanımlamış (const veya let ile) olmalısınız. Tanımlamadığınız bir değişkeni üst satırda çağırmaya çalışırsanız kodunuz çöker.Hatalı Sıra:javascriptconsole.log(isim); // HATA: Cannot access 'isim' before initialization
+let isim = "Ahmet";
+Kodu dikkatli kullanın.Doğru Sıra:javascriptlet isim = "Ahmet";
+console.log(isim); // Çıktı: Ahmet
+Kodu dikkatli kullanın.3. Fonksiyonların Yazım Şekli (Hoisting)Fonksiyonları tanımlama şekliniz, sıranın önemli olup olmadığını belirler:Normal Fonksiyonlar (function anahtarı ile): Sıra önemli değildir. JavaScript bunları otomatik olarak en üste taşır (Hoisting).javascriptselamla(); // Çalışır! Sıra önemli değil.
+function selamla() { console.log("Merhaba"); }
+Kodu dikkatli kullanın.Arrow (Ok) Fonksiyonlar veya Değişkene Atananlar: Sıra kesinlikle önemlidir. Önce tanımlayıp sonra çağırmalısınız.javascriptselamla(); // HATA verir!
+const selamla = () => { console.log("Merhaba"); };
+Kodu dikkatli kullanın.ÖzetleYazdığınız bir JavaScript kodunun sorunsuz çalışması için her zaman şu altın kuralı takip edin: Önce değişkeni/elemanı oluşturun veya seçin, sonra onunla işlem yapın.Mevcut projenizde sıra yüzünden aldığınız bir hata mesajı var mı?Kodunuzu HTML dosyasının içinde mi yoksa harici bir .js dosyasında mı tutuyorsunuz?Sayfa yüklenmeden kodun çalışmasını engellemek için defer veya DOMContentLoaded yöntemlerini duymuş muydunuz?use strict falan yazmalı mı yada Dom content loadedProjenizin büyüklüğüne ve kodunuzu nereye yazdığınıza bağlı olarak ikisini de kullanmanız profesyonel bir kod yapısı için çok faydalıdır. Ancak zorunluluk durumları farklıdır.Aşağıda hangisini, neden ve ne zaman yazmanız gerektiğini kısa ve net adımlarla görebilirsiniz:1. DOMContentLoaded Yazmalı mıyım?HTML yapınıza göre evet veya hayır:❌ Gerek yok: Eğer JavaScript kodunuzu HTML dosyanızın en altında, yani </body> kapanış etiketinden hemen önce yazıyorsanız veya <script src="kod.js" defer></script> şeklinde defer niteliği kullanıyorsanız buna gerek yoktur. HTML zaten önce yüklenir.Kesinlikle yazmalısınız: Eğer JavaScript kodunuz HTML içinde en üstte (<head> içinde) duruyorsa ve defer kullanmıyorsanız, tarayıcının HTML elemanlarını (DOM) tamamen okumasını beklemek için bu şarttır. Aksi halde elemanları bulamazsınız.Kullanım Örneği:javascriptdocument.addEventListener('DOMContentLoaded', () => {
+    // HTML elemanları artık tamamen hazır!
+    const kutu = document.getElementById('zaman-alani');
+    kutu.textContent = "Saat: 15:00";
+});
+Kodu dikkatli kullanın.2. "use strict" Yazmalı mıyım?Modern projelerde yazmanıza gerek yoktur, çünkü otomatik olarak aktiftir.🛠️ Ne işe yarar? JavaScript'in "katı modunu" açar. Sizin fark etmeden hata yapmanızı engeller. Örneğin, let veya const yazmadan gizli bir değişken oluşturursanız (x = 5; gibi) kodun çökmesini sağlar ve sizi uyarır.Neden yazmanıza gerek yok? Modern JavaScript'te kodlarınızı Modül (Module) yapısında yazıyorsanız (HTML'de <script type="module"> kullanarak) veya React, Vue, Webpack gibi modern araçlar kullanıyorsanız, "use strict" zaten arka planda otomatik olarak etkindir. Ekstradan yazmanıza gerek kalmaz.En Temiz ve Modern Kurulum Nasıl Olmalı?Bugün modern dünyada en çok tercih edilen yöntem, DOMContentLoaded veya "use strict" satırlarını kodun içine boğmak yerine, HTML'deki çağırma yöntemini değiştirmektir.HTML tarafı (En modern yöntem):html<!-- defer sayesinde DOMContentLoaded yazmanıza gerek kalmaz -->
+<!-- type="module" sayesinde "use strict" otomatik aktif olur -->
+<script src="app.js" defer type="module"></script>
+Kodu dikkatli kullanın.JavaScript tarafı (app.js):javascript// Doğrudan temiz kodunuzu yazın, sıra hatası veya katı mod hatası almazsınız
+const kutu = document.getElementById('zaman-alani');
+kutu.textContent = new Date().toLocaleTimeString();
+Kodu dikkatli kullanın.Şu an üzerinde çalıştığınız projede kodunuzu HTML sayfasının içine <script> etiketleriyle mi yazıyorsunuz, yoksa ayrı bir .js dosyasında mı tutuyorsunuz? Kodunuzun yerini söylerseniz en doğru kurulumu netleştirebiliriz.const formatliZaman = simdi.toLocaleString('tr-TR', {
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit',
+  hour: '2-digit',
+  minute: '2-digit'
+}); bu nasıl çalışıyorBu kod bloğu, JavaScript'in yerleşik ve en güçlü zaman biçimlendirme aracı olan Intl.DateTimeFormat API'sini arka planda çalıştırır. Satır satır ne yaptığını ve nasıl çalıştığını şu şekilde özetleyebiliriz:1. simdi.toLocaleString(...) Nedir?toLocaleString() fonksiyonu, bir tarih nesnesini (Date) alır ve onu belli bir dilin ve bölgenin kurallarına göre okunabilir bir metne (String) dönüştürür.2. İlk Parametre: 'tr-TR' (Dil ve Ülke Kodu)Tarayıcıya, zamanı hangi ülkenin formatında yazacağını söyler.tr: Dilin Türkçe olacağını belirtir (Örn: Ay isimleri Türkçe gelir, saat formatı 24'lük olur).TR: Türkiye bölgesini temsil eder. Türkiye'de tarih dizilimi Gün.Ay.Yıl şeklinde olduğu için tarayıcı dizilimi otomatik olarak buna göre ayarlar. (Örn: 'en-US' yazsaydınız dizilim Ay/Gün/Yıl olurdu).3. İkinci Parametre: { ... } (Ayarlar Objesi)Burada tarayıcıya, tarihin hangi parçalarını, nasıl bir görsel formatta göstermek istediğinizi tek tek söylersiniz:year: 'numeric': Yılı tam sayı olarak (4 haneli) getirir.Çıktı: 2026month: '2-digit': Ayı her zaman 2 haneli bir sayı olarak getirir. Eğer ay tek haneliyse (örneğin Mayıs ise 5 yerine 05) başına sıfır koyar.Çıktı: 08 (Önceki sorunuzda yaptığımız gibi yazıya dökmek isteseydik buraya 'long' yazmalıydık).day: '2-digit': Ayın gününü her zaman 2 haneli sayı yapar. (Örn: 7 yerine 07).Çıktı: 07hour: '2-digit': Saati 2 haneli olarak getirir. Türkiye formatında (tr-TR) bu varsayılan olarak 24 saatlik sistemdir.Çıktı: 15minute: '2-digit': Dakikayı 2 haneli olarak getirir. (Örn: 4 yerine 04).Çıktı: 04Büyük Avantajı Nedir?Eğer bu ayarları elle yapmaya çalışsaydınız; günün yanına nokta koy, araya boşluk bırak, saatin yanına iki nokta koy, tek hanelilerin başına 0 ekle gibi onlarca satır if-else ve string birleştirme kodu yazmak zorunda kalırdınız.Bu kod ise sizin yerinize tüm bu noktalama işaretlerini ve dizilimi Türkiye standartlarına göre otomatik birleştirir ve tek seferde şu çıktıyı üretir:07.08.2026 15:04Bu parametreler arasında değiştirmek veya çıktısına eklemek istediğiniz başka bir detay var mı? Örneğin saniyeyi de eklemek ister misiniz, yoksa gün ismini (Cuma gibi) yanına yazdırmayı deneyelim mi?yani geliştiriciler tr ön ayarı mı koymuşEvet, tam olarak öyle! JavaScript’i geliştiren ve standartlarını belirleyen komite (TC39), dünya üzerindeki neredeyse tüm ülkelerin ve dillerin tarih, saat, para birimi ve sayı formatlarını tarayıcıların içine ön ayar (küresel standart) olarak yerleştirmiştir.Buna yazılım dünyasında Uluslararasılaştırma (Internationalization) veya kısaca Intl API denir.Arka planda süreç şu şekilde işler:1. Hazır Kurallar Havuzu (CLDR)Tarayıcılar (Chrome, Safari, Edge vb.), Unicode konsorsiyumu tarafından yönetilen devasa bir küresel veritabanı (CLDR) kullanır. Bu veritabanında Türkiye için şu ön ayarlar kayıtlıdır:Tarih sırası Gün.Ay.Yıl olmalı.Ayırıcı olarak nokta (.) kullanılmalı.Saat formatı varsayılan olarak 24 saatlik sistem olmalı.Ay isimleri istendiğinde "Ocak, Şubat, Mart..." diye yazılmalı.2. Siz Sadece Kodu VerirsinizSiz JavaScript'e 'tr-TR' yazdığınızda, tarayıcı bu devasa havuzdan Türkiye paketini çeker.Eğer bu ön ayarlar olmasaydı, dünyanın farklı yerlerindeki kullanıcılar için sitenizi uyarlamak tam bir kabus olurdu. Örneğin:'en-US' (Amerika) yazarsanız tarayıcı otomatik olarak ayırıcıyı bölü (/) yapar, sırayı Ay/Gün/Yıl olarak değiştirir ve saati AM/PM formatına çevirir.'de-DE' (Almanya) yazarsanız tarih formatı bize benzer ama saatte nokta kullanabilir.Küçük Bir Test ile Görelim:Aynı tarihi sadece dil kodunu değiştirerek ekrana bastığınızda tarayıcının ön ayarlarının nasıl devreye girdiğini görebilirsiniz:javascriptconst simdi = new Date();
+const ayarlar = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' };
+
+console.log(simdi.toLocaleString('tr-TR', ayarlar)); // "07.08.2026 15:04"  (Noktalı ve 24 Saat)
+console.log(simdi.toLocaleString('en-US', ayarlar)); // "08/07/2026, 03:04 PM" (Slaşlı ve AM/PM)
+console.log(simdi.toLocaleString('ar-EG', ayarlar)); // Mısır formatında tamamen Arapça rakamlarla yazar.
+Kodu dikkatli kullanın.Kısacası, geliştiriciler dünyadaki tüm diller için bu ameleliği bizim yerimize bir kez yapmış ve tarayıcının içine gömmüştür. Biz de sadece 'tr-TR' diyerek bu hazır kuralları çağırırız.Bu hazır ön ayarları kullanarak, projenize haftanın hangi günü (Cuma, Cumartesi vb.) olduğunu da Türkçe metin olarak eklemek ister misiniz?const formattedTime = now.toLocaleString('tr-TR', {
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit',
+  hour: '2-digit',
+  minute: '2-digit'
+}); sadece bu kodda değişiklil yaparak ağustosu yazıyla yazabilir miyiz ve ayrıca haftanın hangi günü olduğunu yazabilir miyiEvet, kesinlikle yapabilirsiniz! Dışarıdaki hiçbir koda dokunmadan, sadece süslü parantezlerin { ... } içindeki ayarları değiştirerek bunu tek satırda yapabilirsiniz.Bunun için iki küçük değişiklik yapmamız gerekiyor:month: '2-digit' yerine month: 'long' yazarak ayı yazıya ("Ağustos") çeviriyoruz.Ayarlara weekday: 'long' ekleyerek haftanın gününü ("Cuma") dahil ediyoruz.Güncellenmiş Kod:javascriptconst formattedTime = now.toLocaleString('tr-TR', {
+  year: 'numeric',
+  month: 'long',   // Sayı yerine uzun ay ismi yazar (Örn: Ağustos)
+  day: '2-digit',
+  weekday: 'long', // Haftanın gününü yazar (Örn: Cuma)
+  hour: '2-digit',
+  minute: '2-digit'
+});
+
+console.log(formattedTime);
+Kodu dikkatli kullanın.Bu Kodun Çıktısı Nasıl Olacak?Tarayıcının Türkçe ön ayarları sayesinde, tüm bu kelimeler ve sayılar otomatik olarak dil kurallarına uygun bir sıraya dizilir ve şu çıktıyı verir:7 Ağustos 2026 Cuma saat 15:09 (veya tarayıcı sürümünüze göre aralarda virgül/boşluk ile temiz bir formatta yan yana gelir).DOM elemanınızı değiştiren koda dokunmanıza gerek kalmaz; bu yeni formattedTime değişkenini doğrudan textContent ile HTML elemanınıza atayabilirsiniz.Bu format tam istediğiniz gibi oldu mu, yoksa aradaki "saat" kelimesini veya noktalama işaretlerini tamamen kendi istediğiniz gibi özelleştirmek ister misiniz?const formattedTime = now.toLocaleString('tr-TR', {
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit',
+  hour: '2-digit',
+  minute: '2-digit'
+});Bu kod üzerinden gitmek harika bir temel. Sadece bu süslü parantezlerin { ... } içindeki özellikleri değiştirerek hedefimize ulaşabiliriz.İstediğiniz gibi ayı yazıya çevirmek ve gün ismini eklemek için şu iki değişikliği yapmanız yeterlidir:month: '2-digit' yerine month: 'long' yazın (Ayı "Ağustos" yapar).Objeye weekday: 'long' özelliğini ekleyin (Günü "Cuma" yapar).Kodun Güncel Hali:javascriptconst formattedTime = now.toLocaleString('tr-TR', {
+  weekday: 'long', // Haftanın gününü uzun yazar (Örn: Cuma)
+  year: 'numeric',
+  month: 'long',   // Ayı yazı ile uzun yazar (Örn: Ağustos)
+  day: '2-digit',
+  hour: '2-digit',
+  minute: '2-digit'
+});
+Kodu dikkatli kullanın.Kod Nasıl Davranacak?Tarayıcı, verdiğiniz bu yeni talimatları alıp Türkiye'nin dil kurallarına göre otomatik olarak sıraya dizecektir. Bu kodun üreteceği tam çıktı şu anki zamana göre şu şekildedir:7 Ağustos 2026 Cuma 15:10 (veya tarayıcı yapısına göre aralarda virgül/saat ifadesiyle: 7 Ağustos 2026 Cuma saat 15:10)Eğer bu çıktının arasına çizgi veya özel karakter koymak isterseniz, bu kodun ürettiği çıktıyı bölmek mi istersiniz yoksa bu hali DOM'a yazdırmak için yeterli mi?MediumUsing Moment.js to Format Custom Dates in React14 Haz 2024 — Explanation of the Date Format MMM: Abbreviated month name (e.g., “Jun”). Do: Day of the month with ordinal (e.g., “14th”). YY: Tw...araya başka metin ekleyebilir miyimEvet, ekleyebilirsiniz! Ancak toLocaleString fonksiyonunun kendi süslü parantezleri { } içine doğrudan özelleştirilmiş metinler (örneğin çizgi, ikon veya kelime) yazamazsınız. Çünkü orası sadece tarayıcının ön ayar komutlarını kabul eder.Araya kendi metinlerinizi eklemek için iki harika yöntem vardır:Yöntem 1: Çıktıyı + veya Template Literals ile Birleştirmek (En Pratik Yol)toLocaleString ile tarihi ve saati ayrı ayrı iki değişkene alıp, araya istediğiniz her şeyi yazarak yan yana birleştirebilirsiniz.javascriptconst simdi = new Date();
+
+// 1. Sadece Tarih Kısmını Alın (Çıktı: "7 Ağustos 2026 Cuma")
+const sadeceTarih = simdi.toLocaleString('tr-TR', {
+  year: 'numeric', month: 'long', day: '2-digit', weekday: 'long'
+});
+
+// 2. Sadece Saat Kısmını Alın (Çıktı: "15:10")
+const sadeceSaat = simdi.toLocaleString('tr-TR', {
+  hour: '2-digit', minute: '2-digit'
+});
+
+// 3. Araya istediğiniz metni ekleyerek birleştirin (`` backtick işaretleri ile)
+const formatliZaman = `Tarih: ${sadeceTarih} | Saat tam olarak: ${sadeceSaat} civarı.`;
+
+console.log(formatliZaman);
+// Çıktı: "Tarih: 7 Ağustos 2026 Cuma | Saat tam olarak: 15:10 civarı."
+Kodu dikkatli kullanın.Yöntem 2: Intl.DateTimeFormat ile Parçalara Ayırmak (İleri Seviye)Eğer "Ben tek bir obje tanımlayayım ama içindeki her kelimenin arasına özel karakter koyayım" derseniz, JavaScript size tüm parçaları bir dizi (array) halinde veren formatToParts metodunu sunar.javascriptconst simdi = new Date();
+const formatter = new Intl.DateTimeFormat('tr-TR', {
+  year: 'numeric', month: 'long', day: '2-digit', weekday: 'long', hour: '2-digit', minute: '2-digit'
+});
+
+// Tarihi parçalara böler (gün, ay, yıl, saat, dakika ayrı ayrı objeler olur)
+const parcalar = formatter.formatToParts(simdi);
+
+// Parçaları isimlerine göre kolayca çekmek için bir fonksiyona dönüştürelim
+const bul = (tip) => parcalar.find(p => p.type === tip).value;
+
+// İstediğiniz metni aralara serpiştirerek tamamen kendiniz tasarlayın:
+const ozelMetin = `Bugün günlerden ${bul('weekday')}. Takvimler ${bul('day')} ${bul('month')} ${bul('year')} gösteriyor. Saat ise ${bul('hour')}:${bul('minute')}.`;
+
+console.log(ozelMetin);
+// Çıktı: "Bugün günlerden Cuma. Takvimler 07 Ağustos 2026 gösteriyor. Saat ise 15:10."
+Kodu dikkatli kullanın.Tarih ve saatin arasına tam olarak nasıl bir metin veya sembol eklemek istiyorsunuz? Örnek bir şablon verirseniz, kodunu doğrudan sizin için yazabilirim.peki yine attığım kodda mininal değişiklilk yaparak saat dilimim yazabilir miyimEvet, yazabilirsiniz! Yine sadece süslü parantezlerin { ... } içine tek bir satır ekleyerek zaman diliminizi çıktıya dahil edebilirsiniz.Bunun için ayarlara timeZoneName özelliğini eklemeniz gerekir.Zaman dilimini nasıl görmek istediğinize bağlı olarak iki seçeneğiniz var:Seçenek A: Kısa Format (Örn: GMT+3)Kodunuza timeZoneName: 'short' eklerseniz, tarayıcı Türkiye'nin saat farkını yazar.javascriptconst formattedTime = now.toLocaleString('tr-TR', {
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit',
+  hour: '2-digit',
+  minute: '2-digit',
+  timeZoneName: 'short' // Zaman dilimini kısa yazar
+});
+
+console.log(formattedTime);
+// Çıktı: "07.08.2026 15:11 GMT+3"
+Kodu dikkatli kullanın.Seçenek B: Uzun Format (Örn: TSİ - Türkiye Standart Saatı)Kodunuza timeZoneName: 'long' eklerseniz, o dilin kültüründeki resmi adını yazar.javascriptconst formattedTime = now.toLocaleString('tr-TR', {
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit',
+  hour: '2-digit',
+  minute: '2-digit',
+  timeZoneName: 'long' // Zaman dilimini uzun yazar
+});
+
+console.log(formattedTime);
+// Çıktı: "07.08.2026 15:11 TSİ" (Türkiye Standart Saati)
+Kodu dikkatli kullanın.Gördüğünüz gibi dış yapıya, değişken ismine veya DOM değiştirme kodunuza hiç dokunmadan, sadece içeriye timeZoneName ekleyerek bu işi tek satırda çözebiliyoruz.Bu çıktıdaki GMT+3 veya TSİ gösterimi projeniz için uygun mu, yoksa doğrudan coğrafi konumu (yani Europe/Istanbul metnini) mi yazdırmak istiyordunuz?const swapButton = document.getElementById("swap-button");
+const dateAndHour = document.getElementById("date-and-hour");
+
+const lang = document.getElementById("lang");
+
+let langCode;
+if (lang.value == "Türkçe") {
+    langCode = 'tr-TR'
+} else if (lang.value == "English") {
+    langCode = 'en-US'
+} else if (lang.value == "Español") {
+    langCode = 'es-ES'
+}
+
+const now = new Date();
+const formattedTime = now.toLocaleString(`${langCode}`, {
+  year: 'numeric',
+  month: 'long',
+  day: '2-digit',
+  weekday: 'long',
+  hour: '2-digit',
+  minute: '2-digit',
+  timeZoneName: 'short'
+}); neden çalışmadıBu kodun çalışmamasının 2 temel nedeni var. Birincisi JavaScript'in çalışma sırasıyla (senkronizasyon), ikincisi ise dinamik dil değişimini tetikleyecek bir olay (event) eksikliğidir.Neden çalışmadığını ve nasıl düzelteceğinizi adım adım inceleyelim:1. Neden Çalışmadı? (Hata Analizi)⏱️ Kod Sadece Bir Kere Çalışıyor: JavaScript yukarıdan aşağıya doğru bir kez akar. Sayfa ilk açıldığında lang.value değerini okur, tarihi üretir ve kod orada biter. Kullanıcı daha sonra dili değiştirse bile kod başa dönüp tekrar çalışmaz.📋 DOM Değiştirme Satırı Eksik: Ürettiğiniz formattedTime değişkenini oluşturmuşsunuz ancak bunu ekranınızdaki HTML elemanına (dateAndHour) henüz basmamışsınız. Yani dateAndHour.textContent = formattedTime; satırı kodda eksik.2. Doğru ve Çalışan Kod YapısıBu kodu çalıştırmak için dili her değiştirdiğimizde zamanı yeniden hesaplayan ve DOM'u güncelleyen bir fonksiyon kurmalıyız. Ayrıca dil kutusuna (<select> elemanına) bir değişim dinleyicisi (change event listener) eklemeliyiz.Kodunuzun sorunsuz çalışan hali şu şekildedir:javascriptconst swapButton = document.getElementById("swap-button");
+const dateAndHour = document.getElementById("date-and-hour");
+const lang = document.getElementById("lang");
+
+// 1. Zamanı güncelleyen fonksiyonu tanımlayalım
+function zamaniGuncelle() {
+    let langCode;
+    
+    // Anlık olarak seçili dili kontrol et
+    if (lang.value === "Türkçe") {
+        langCode = 'tr-TR';
+    } else if (lang.value === "English") {
+        langCode = 'en-US';
+    } else if (lang.value === "Español") {
+        langCode = 'es-ES';
+    } else {
+        langCode = 'tr-TR'; // Varsayılan değer
+    }
+
+    const now = new Date();
+    const formattedTime = now.toLocaleString(langCode, {
+      year: 'numeric',
+      month: 'long',
+      day: '2-digit',
+      weekday: 'long',
+      hour: '2-digit',
+      minute: '2-digit',
+      timeZoneName: 'short'
+    });
+
+    // 2. Eksik olan kısım: DOM'u yeni formatlı zaman ile değiştiriyoruz
+    dateAndHour.textContent = formattedTime;
+}
+
+// 3. Dil seçeneği her değiştiğinde zamanı otomatik güncelle
+lang.addEventListener('change', zamaniGuncelle);
+
+// 4. Sayfa ilk açıldığında da tarih ekranda boş kalmasın diye bir kez çalıştır
+zamaniGuncelle();
+Kodu dikkatli kullanın.Neleri Düzelttik?lang.addEventListener('change', ...): Kullanıcı listeden yeni bir dil seçtiği an kod tetiklenir.dateAndHour.textContent = formattedTime: Hesaplanan yeni tarih string'ini HTML ekranınıza yazdırdık.Fonksiyon Yapısı: Kodu dinamik hale getirerek her tetiklendiğinde new Date() ile o anki güncel saniyeyi ve saati almasını sağladık.Şu an projenizde swapButton (değiştirme butonu) adında bir eleman daha var. Bu butona tıklandığında dillerin sırayla kendi kendine değişmesini mi istiyorsunuz, yoksa butona basınca başka bir işlem mi gerçekleşecek?
