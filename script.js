@@ -26,7 +26,7 @@ const translations = {
         convertBtn: "Çevir",
         swapBtn: "Değiştir",
         sliderLabel: "Gösterilecek Ondalık Basamak Sayısı",
-        darkModeBtn: "Karanlık Mod",
+        darkModeBtn: "Koyu Mod",
         sourceCodeLink: "Kaynak Kodu",
         disclaimer: "Sorumluluk Reddi Beyanı",
         currencyDataSource: "Kur Verisi Kaynağı:",
@@ -37,7 +37,14 @@ const translations = {
         chf: "İsviçre Frangı (CHF)",
         jpy: "Japon Yeni (JPY)",
         cad: "Kanada Doları (CAD)",
-        aud: "Avustralya Doları (AUD)"
+        aud: "Avustralya Doları (AUD)",
+        cny: "Çin Yuanı (CNY)",
+        hkd: "Hong Kong Doları (HKD)",
+        sgd: "Singapur Doları (SGD)",
+        inr: "Hindistan Rupisi (INR)",
+        mxn: "Meksika Pesosu (MXN)",
+        brl: "Brezilya Reali (BRL)",
+        sar: "Suudi Arabistan Riyali (SAR)"
     },
     en: {
         title: "Currency Converter",
@@ -53,13 +60,20 @@ const translations = {
         disclaimer: "Disclaimer",
         currencyDataSource: "Currency Data Source:",
         try: "Turkish Lira (TRY)",
-        usd: " United States Dollar (USD)",
+        usd: "United States Dollar (USD)",
         eur: "Euro (EUR)",
         gbp: "Great Britain Pound (GBP)",
         chf: "Swiss Franc (CHF)",
         jpy: "Japanese Yen (JPY)",
         cad: "Canadian Dollar (CAD)",
-        aud: "Australian Dollar (AUD)"
+        aud: "Australian Dollar (AUD)",
+        cny: "Chinese Yuan (CNY)",
+        hkd: "Hong Kong Dollar (HKD)",
+        sgd: "Singapore Dollar (SGD)",
+        inr: "Indian Rupee (INR)",
+        mxn: "Mexican Peso (MXN)",
+        brl: "Brazilian Real (BRL)",
+        sar: "Saudi Arabian Riyal (SAR)"
     },
     es: {
         title: "Conversor de Monedas",
@@ -81,7 +95,14 @@ const translations = {
         chf: "Franco suizo (CHF)",
         jpy: "Yen japonés (JPY)",
         cad: "Dólar canadiense (CAD)",
-        aud: "Dólar australiano (AUD)"
+        aud: "Dólar australiano (AUD)",
+        cny: "Yuan chino (CNY)",
+        hkd: "Dólar de Hong Kong (HKD)",
+        sgd: "Dólar de Singapur (SGD)",
+        inr: "Rupia india (INR)",
+        mxn: "Peso mexicano (MXN)",
+        brl: "Real brasileño (BRL)",
+        sar: "Riyal saudí (SAR)"
     },
     fr: {
         title: "Convertisseur de Devises",
@@ -170,6 +191,94 @@ const translations = {
         jpy: "Iene Japonês (JPY)",
         cad: "Dólar Canadense (CAD)",
         aud: "Dólar Australiano (AUD)"
+    },
+    nl: {
+        title: "Valutacalculator",
+        baseLabel: "Basisvaluta",
+        quoteLabel: "Doelvaluta",
+        baseAmountLabel: "Bedrag in Basisvaluta",
+        quoteAmountLabel: "Bedrag in Doelvaluta",
+        convertBtn: "Omrekenen",
+        swapBtn: "Wisselen",
+        sliderLabel: "Aantal te tonen decimalen",
+        darkModeBtn: "Donkere modus",
+        sourceCodeLink: "Broncode",
+        disclaimer: "Disclaimer",
+        currencyDataSource: "Valutagegevensbron:",
+        try: "Turkse lira (TRY)",
+        usd: "Amerikaanse dollar (USD)",
+        eur: "Euro (EUR)",
+        gbp: "Brits pond (GBP)",
+        chf: "Zwitserse frank (CHF)",
+        jpy: "Japanse yen (JPY)",
+        cad: "Canadese dollar (CAD)",
+        aud: "Australische dollar (AUD)"
+    },
+    pl: {
+        title: "Przelicznik Walut",
+        baseLabel: "Waluta Bazowa",
+        quoteLabel: "Waluta Docelowa",
+        baseAmountLabel: "Kwota Waluty Bazowej",
+        quoteAmountLabel: "Kwota Waluty Docelowej",
+        convertBtn: "Przelicz",
+        swapBtn: "Zamień",
+        sliderLabel: "Liczba miejsc po przecinku",
+        darkModeBtn: "Tryb Ciemny",
+        sourceCodeLink: "Kod Źródłowy",
+        disclaimer: "Zastrzeżenie",
+        currencyDataSource: "Źródło Danych o Walutach:",
+        try: "Lira turecka (TRY)",
+        usd: "Dolar amerykański (USD)",
+        eur: "Euro (EUR)",
+        gbp: "Funt szterling (GBP)",
+        chf: "Frank szwajcarski (CHF)",
+        jpy: "Jen japoński (JPY)",
+        cad: "Dolar kanadyjski (CAD)",
+        aud: "Dolar australijski (AUD)"
+    },
+    ru: {
+        title: "Конвертер валют",
+        baseLabel: "Базовая валюта",
+        quoteLabel: "Целевая валюта",
+        baseAmountLabel: "Сумма в базовой валюте",
+        quoteAmountLabel: "Сумма в целевой валюте",
+        convertBtn: "Конвертировать",
+        swapBtn: "Поменять местами",
+        sliderLabel: "Количество знаков после запятой",
+        darkModeBtn: "Темный режим",
+        sourceCodeLink: "Исходный код",
+        disclaimer: "Отказ от ответственности",
+        currencyDataSource: "Источник данных о валютах:",
+        try: "Турецкая лира (TRY)",
+        usd: "Доллар США (USD)",
+        eur: "Евро (EUR)",
+        gbp: "Британский фунт стерлингов (GBP)",
+        chf: "Швейцарский франк (CHF)",
+        jpy: "Японская иена (JPY)",
+        cad: "Канадский доллар (CAD)",
+        aud: "Австралийский доллар (AUD)"
+    },
+    az: {
+        title: "Valyuta Konvertoru",
+        baseLabel: "Əsas Valyuta",
+        quoteLabel: "Çevriləcək Valyuta",
+        baseAmountLabel: "Əsas Valyuta Məbləği",
+        quoteAmountLabel: "Çevrilən Valyuta Məbləği",
+        convertBtn: "Çevir",
+        swapBtn: "Dəyişdir",
+        sliderLabel: "Göstəriləcək Onluq Rəqəmlərin Sayı",
+        darkModeBtn: "Qaranlıq Rejim",
+        sourceCodeLink: "Mənbə Kodu",
+        disclaimer: "İmtina (Disclaimer)",
+        currencyDataSource: "Valyuta Məlumat Mənbəyi:",
+        try: "Türkiyə Lirəsi (TRY)",
+        usd: "Amerika Birləşmiş Ştatları Dolları (USD)",
+        eur: "Avro (EUR)",
+        gbp: "Britaniya Funt Sterlinqi (GBP)",
+        chf: "İsveçrə Frankı (CHF)",
+        jpy: "Yapon Yeni (JPY)",
+        cad: "Kanada Dolları (CAD)",
+        aud: "Avstraliya Dolları (AUD)"
     }
 };
 
@@ -216,7 +325,16 @@ function changeDateLanguage(){
         langCode = 'it-IT'
     } else if (lang.value === "pt") {
         langCode = 'pt-PT'
+    } else if (lang.value === "nl") {
+        langCode = 'nl-NL'
+    } else if (lang.value === "pl") {
+        langCode = 'pl-PL'
+    } else if (lang.value === "ru") {
+        langCode = 'ru-RU'
+    } else if (lang.value === "az") {
+        langCode = 'az-AZ'
     }
+        
 
     const now = new Date();
     formattedTime = now.toLocaleString(`${langCode}`, {
