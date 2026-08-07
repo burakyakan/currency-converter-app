@@ -11,9 +11,17 @@
         <h1>Currency Converter</h1>
         <a href="https://www.linkedin.com/in/burakyakan/" target="_blank">LinkedIn</a>
         <a href="https://github.com/burakyakan" target="_blank">GitHub</a>
+        <a href="https://github.com/burakyakan/currency-converter-app" target="_blank">Source Code</a>
+        <select name="lang" id="lang">
+            <option value="tr">Türkçe</option>
+            <option value="en">English</option>
+            <option value="es">Español</option>
+        </select>
+        <button>Dark Mode</button>
     </header>
     <main>
         <form>
+            <p id="date-and-hour"></p>
             <label for="base">Base Currency</label>
             <select name="base" id="base">
                 <option value="try">Turkish Lira (TRY)</option>
@@ -37,6 +45,7 @@
             <label for="quote-amount">Quote Currency Amount</label>
             <input type="number" name="quote-amount" id="quote-amount" readonly>
             <input type="submit" value="Convert" id="convert-button">
+            <button id="swap-button">Swap</button>
             
             <!--TODO-->
             <!-- Add Swap Button (!!!) -->

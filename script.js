@@ -7,6 +7,19 @@ const convertButton = document.getElementById("convert-button");
 const decimalSlider = document.getElementById("decimal-slider");
 const decimalSliderOutput = document.getElementById("decimal-slider-output");
 
+const swapButton = document.getElementById("swap-button");
+const dateAndHour = document.getElementById("date-and-hour");
+
+
+swapButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    let x = baseCurrency.value;
+    let y = quoteCurrency.value;
+    quoteCurrency.value = x;
+    baseCurrency.value = y;
+    quoteAmount.value = null;
+})
+
 decimalSlider.addEventListener("input", (e) => {
     e.preventDefault();
     decimalSliderOutput.value = decimalSlider.value;
@@ -17,6 +30,7 @@ convertButton.addEventListener("click", (e) => {
     console.log("Converting...");
     document.getElementById("quote-amount").value = null;
     getCurrencyData(baseCurrency.value, quoteCurrency.value, baseAmount.value, quoteAmount.value);
+    
 })
 
 
